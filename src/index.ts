@@ -1,6 +1,4 @@
-import { ContaBancaria } from './models/ContaBancaria'
+import { ContatoCsvDAO } from "./model/dao/ContatoCsvDAO"
 
-const conta1 = new ContaBancaria()
-conta1.depositar(500)
-conta1.sacar(120)
-console.log(conta1.consultar())
+const contatoDAO = new ContatoCsvDAO()
+console.log(contatoDAO.recuperarContatos())
