@@ -1,19 +1,14 @@
 import { Contato } from '../entity/Contato'
-import { IContatoDAO } from './IContatoDAO'
-import { join } from 'path'
-import { readFileSync } from 'fs'
+import { ContatoDAO } from './ContatoDAO'
 
-export class ContatoJsonDAO implements IContatoDAO {
-
-    private _caminhoArquivo: string
+export class ContatoJsonDAO extends ContatoDAO {
 
     constructor() {
-        this._caminhoArquivo = join(__dirname, '../..', 'data', 'contatos.json')
+        super('contatos.json')
     }
 
     recuperarContatos(): Contato[] {
-        const conteudoStr = readFileSync(this._caminhoArquivo, 'utf-8')
-        const listaObj: any[] = JSON.parse(conteudoStr)
+        const listaObj: any[] = JSON.parse(this.conteudoStr)
         const contatos = listaObj.map(obj => new Contato(
             obj.nome,
             obj.telefone,
